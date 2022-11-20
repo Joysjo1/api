@@ -1,8 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const app = express();
 const mongoose = require("mongoose");
 const multer  = require('multer');
 var url = require('url');
+app.use(cors());
 mongoose.connect("mongodb+srv://adminjo12:admin12345@joysundaran012.fydaekf.mongodb.net/studentPortal",(req,res)=>{
     // console.log(res);
 });
