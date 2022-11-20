@@ -9,6 +9,8 @@ var url = require('url');
 app.use(cors());
 mongoose.connect(process.env.MONGODB_URL,(req,res)=>{
     console.log(res);
+
+
 });
 const bodyParser = require('body-parser')
 const routeEmployee=require("./routes/student");
