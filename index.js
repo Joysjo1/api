@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URL,(req,res)=>{
 const bodyParser = require('body-parser')
 const routeEmployee=require("./routes/student");
 const routeDept=require("./routes/departments");
-const auth =require("./routes/auth");
+const authentication =require("./routes/auth");
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -31,7 +31,8 @@ app.use(bodyParser.json())
 
 app.use("/api/v1/",routeEmployee);
 app.use("/api/v1/",routeDept);
-app.use("/api/v1/",auth);
+
+app.use("/api/v1/", authentication);
 
 let PORT =3000
 app.listen(PORT,()=>{
