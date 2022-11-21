@@ -11,12 +11,14 @@ router.post('/register',function(req,res){
     console.log(req.body)
     var data=req.body
   
-    // var dept = new auth (data);
-    // dept.save();
-    // res.send({
-    //     data:data,
-    //     status:"user credated",
+    var dept = new auth (data);
+    dept.save();
+    res.send({
+        data:data,
+        status:"user credated",
 
-    // })
+    })
     
 });
+
+module.exports=router;
