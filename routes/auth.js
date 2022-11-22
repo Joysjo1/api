@@ -1,21 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const auth=require("../models/auth");
-
-const {hashGenerate} = require('../helpers/helpers')
+// const bcrypt = require('bcryptjs');
 
 
 // REGISTER
 
-router.post('/register', function(req,res){
+router.post('/register',async  function(req,res){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-    const hashPassword=  hashGenerate(req.body.passWord)
     // const hashConPassword= await hashGenerate(req.body.confirmPassword)
-    console.log(req.body)
+    // console.log(req.body)
+    // const salt = await bcrypt.genSaltSync(10);
+    // const password = await req.body.password;
+    // const hash = await bcrypt.hashSync(req.body.password, salt);
+   ;
     var data1={
         email:req.body.email,
-        passWord:hashPassword,
+        // passWord:bcrypt.hashSync(password, salt),
+        passWord:req.body.passWord,
         confirmPassword:req.body.confirmPassword,
         firstName:req.body.firstName,
         lastName:req.body.lastName,
@@ -26,11 +29,20 @@ router.post('/register', function(req,res){
     var dept = new auth (data1);
      dept.save();
     res.send({
-        data:data,
+        data:data1,
         status:"user credated",
 
     })
     
 });
+
+router.post('/register',async  function(req,res){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+
+    const user= auth.findOne({username:req.body.username});
+})
+
+
 
 module.exports=router;
